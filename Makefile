@@ -22,4 +22,5 @@ docker-build:
 # Docker run target: runs Docker container
 docker-run:
 	@echo "Running Docker container $(DOCKER_IMAGE)"
+	@echo "Open http://localhost:$(PORT) in your browser"
 	docker run -it -p $(PORT):80 -v $(pwd):/app $(DOCKER_IMAGE)

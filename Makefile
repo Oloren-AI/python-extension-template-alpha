@@ -1,7 +1,5 @@
-# Makefile for chemblextension project
-
 # Variables
-EXTENSION_NAME = "chemblextension"
+EXTENSION_NAME = "[NAME]"
 DOCKER_IMAGE = ${EXTENSION_NAME}:latest
 PORT = 8077
 
@@ -24,3 +22,8 @@ docker-run:
 	@echo "Running Docker container $(DOCKER_IMAGE)"
 	@echo "Open http://localhost:$(PORT) in your browser"
 	docker run -it -p $(PORT):80 -v $(pwd):/app $(DOCKER_IMAGE)
+
+# Docker exec target: opens a bash terminal inside of a running container for this image
+docker-exec:
+	@echo "Docker container id: $(shell docker ps -aqf "ancestor=$(DOCKER_IMAGE)")"
+	docker exec -it $(shell docker ps -aqf "ancestor=$(DOCKER_IMAGE)") /bin/bash
